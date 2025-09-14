@@ -58,6 +58,7 @@ def hello():
 def about():
     return {'Message': 'A fully functional API to manage your patient records'}
 
+#Read Operation
 @app.get('/view')
 def view():
     data = load_data()
@@ -94,6 +95,7 @@ def sort_patient(sort_by: str = Query(..., description='Sort on the basis of hei
 
     return sorted_data
 
+#Create Operation 
 @app.post('/create')
 def create_patient(patient: Patient):
 
@@ -112,6 +114,7 @@ def create_patient(patient: Patient):
 
     return JSONResponse(status_code=201, content={'message': 'Patient created succssfully'})
 
+#Edit Operation
 @app.put('/edit/{patient_id}')
 def update_patient(patient_id: str, patient_update: PatientUpdate):
     
@@ -136,6 +139,7 @@ def update_patient(patient_id: str, patient_update: PatientUpdate):
     save_data(data)
     return JSONResponse(status_code=200, content={'message':'pateint info updated'})
 
+#Delete Operation
 @app.delete('/delete/{patient_id}')
 def patient_delete(patient_id: str):
 
